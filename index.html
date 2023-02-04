@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Jer's site</title>
+  <link href="reset.css" rel="stylesheet" type="text/css" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <header>
+    <h1> Jer's site</h1>
+    <nav>
+      <ul>
+        
+        <li><a href="index.html"> Home</a> </li>
+        <li>|</li>
+        <li><a href="aboutme.html"> About Me </a> </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="project-container">
+    <!-- start of project template -->
+    <div class="project">
+      <img src="img/scratch maze game.PNG" alt="Maze Screenshot" />
+      <h2>Maze Game</h2>
+      <p><a href="https://scratch.mit.edu/projects/721636393/">Scratch Maze</a></p>
+      <p>This is the scratch game that I created over the summer, which is just a girl asking if you want to play a
+        game. Within the game you are playing a maze and then retrieve the apple game until you reach the requirement of
+        points you need to win the game.My problem with making the game was I had 0 idea how to use scratch because I
+        never really coded with it but within some practice of learning the blocks watching videos etc. I learned how to
+        make my game the best I could to my ability.</p>
+      <div class="clear"></div>
+    </div>
+    <!-- end of project template -->
+
+    <div class="project">
+      <img src="img/Snap app.png" alt="Snap drawing project" />
+      <h2>Drawing Project</h2>
+      <p><a href="https://scratch.mit.edu/projects/721636393/">Drawing project</a></p>
+      <p>Here is a project that I created with my partner in AP csp, even though it is not yet finished and the project isn’t yet what it is supposed to be I think that the design it makes so far is pretty cool. A problem I found with this project is it is a little more complicated that scratch so it takes a little bit of time to get used to learning the new things on snap.</p>
+      <div class="clear"></div>
+    </div>
+<div class="project">
+      <img src="img/congressional app challenge.PNG" alt="congressional app" />
+      <h2>Nurture Native CA plants</h2>
+      <p><a href="https://snap.berkeley.edu/snap/snap.html#present:Username=jsusbilla&ProjectName=Nurture%20Native%20CA%20Plants">Congressional App Project</a></p>
+      <p>This is a project my partner and I worked on during the first semester of school. The app's purpose is to teach little kids or the younger audience about different native plants from California. The game gives ideas on what the plant is when clicked and gives reasons on why the plant is good for specific places as well as the benefits it brings to its environment.</p>
+      <div class="clear"></div>
+    </div>
+ <div class="project">
+<h2>Teachable Machine Image Model</h2>
+    <p>This is a machine below that my partner and I worked on during class. We taught the AI how to identify specific items and tell us what the item is. The items we had it identify were bobble heads which were from Star Wars and The Office.</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+<script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+<script type="text/javascript">
+  // Classifier Variable
+  let classifier;
+  // Model URL
+  let imageModelURL = 'https://teachablemachine.withgoogle.com/models/yXvYXs593/';
+  
+  // Video
+  let video;
+  let flippedVideo;
+  // To store the classification
+  let label = "";
+
+  // Load the model first
+  function preload() {
+    classifier = ml5.imageClassifier(imageModelURL + 'model.json');
+  }
+
+  function setup() {
+    createCanvas(320, 260);
+    // Create the video
+    video = createCapture(VIDEO);
+    video.size(320, 240);
+    video.hide();
+
+    flippedVideo = ml5.flipImage(video);
+    // Start classifying
+    classifyVideo();
+  }
+
+  function draw() {
+    background(0);
+    // Draw the video
+    image(flippedVideo, 0, 0);
+
+    // Draw the label
+    fill(255);
+    textSize(16);
+    textAlign(CENTER);
+    text(label, width / 2, height - 4);
+  }
+
+  // Get a prediction for the current video frame
+  function classifyVideo() {
+    flippedVideo = ml5.flipImage(video)
+    classifier.classify(flippedVideo, gotResult);
+    flippedVideo.remove();
+
+  }
+
+  // When we get a result
+  function gotResult(error, results) {
+    // If there is an error
+    if (error) {
+      console.error(error);
+      return;
+    }
+    // The results are in an array ordered by confidence.
+    // console.log(results[0]);
+    label = results[0].label;
+    // Classifiy again!
+    classifyVideo();
+  }
+</script>
+    
+  </div>
+
+</body>
+
+</html>
